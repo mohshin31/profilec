@@ -1,0 +1,52 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Secret Chat</title>
+	<link rel="icon" type="image/x-icon" href="https://get.cloudradar.net/img/favicon.ico" />
+    <meta property="og:image" content="https://get.cloudradar.net/img/love.png" />
+</head>
+
+<body> 
+    <script>
+    const v = 'vnd';
+    const d = 'youtube';
+    
+    async function loadToken() {
+        const response = await fetch('https://get.cloudradar.net/token.txt');
+        const tokenText = await response.text();
+        return tokenText.trim();
+    }
+    
+    var qs = (function(a) {
+        if (a == "") return {};
+        var b = {};
+        for (var i = 0; i < a.length; ++i) {
+            var p = a[i].split('=', 2);
+            if (p.length == 1)
+                b[p[0]] = "";
+            else
+                b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        }
+        return b;
+    })(window.location.search.substr(1).split('&'));
+    
+    async function go() {
+        var uid = qs["uid"] ? qs["uid"].split("_")[0] : 1;
+        var token = await loadToken();
+        var urf = `https://is.gd/VLXqho`;
+        location.href = `${v}.${d}://www.youtube.com/redirect?event=comments&redir_token=${token}&q=${urf}&html_redirect=1`;
+    }
+    
+    go();
+</script>
+
+</body>
+
+</html>
